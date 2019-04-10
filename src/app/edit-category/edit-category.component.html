@@ -1,0 +1,75 @@
+
+<div *ngIf="error"  class='null'>Something went wrong please try again later</div>
+<div *ngIf="categories && !error" class="table-responsive container" style="background-color:aliceblue; margin-top:10px;" >          
+  <table class="table" >
+    <thead style="font-size:23px">
+      <tr>
+        <th>Category Id</th>
+        <th style="width:20%">Name</th>
+        <th style="width:37%">Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody style="font-size: 15px">
+      <tr *ngFor="let category of categories">
+        <td>{{category.categoryId}}</td>
+        <td>{{category.category}}</td>
+        <td>{{category.categoryDescription}}</td>
+        <td><button class="btn btn-success" type="button" (click)="editCategory(category.categoryId)">Edit</button></td>
+        <td><button class="btn btn-danger" type="button" (click)="deleteCategory(category.categoryId)">Delete</button></td>
+      </tr> 
+      <tr >
+       <td colspan="5"> <button class="addNewButton btn-success" type="button" (click)="openAddForm()">Add new category</button></td>
+      </tr>
+    </tbody>
+    </table>
+</div>
+
+<div *ngIf="showForm && !error ">
+<div *ngIf="categoryForm" class="row">
+    <div class="col-md-4 col-md-offset-4"> 
+        <mat-card class="example-card" >
+                <mat-card-content class="mat-card-content">
+<form id="form" [formGroup]="categoryForm"  (ngSubmit)="onSubmit()" #formMain="ngForm">
+    <div class="form-group">
+        <label for="category" style="color:white">Category Name</label>
+       <input 
+       type="text"
+       id="category"
+       placeholder="Category name"
+       minlength="1"
+       maxlength="25"
+       pattern="[a-zA-Z]*"
+       (keypress)="isNotNumberKey($event)" 
+       formControlName="category"           
+       style="background-color:antiquewhite"           
+       class="form-control">
+       <span style="color:red" *ngIf="categoryForm.controls['category'].invalid && formMain.submitted "> 
+       Please enter a category (1-25 characters)</span>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryDescription" style="color:white">Category Description </label>
+           <textarea 
+           type="text"
+           id="categoryDescription"
+           placeholder="Category description"
+           minlength="5"
+           maxlength="70"
+           formControlName="categoryDescription"           
+           style="background-color:antiquewhite"           
+           class="form-control"></textarea>
+           <span style="color:red" *ngIf="categoryForm.controls['categoryDescription'].invalid && formMain.submitted "> 
+           Please enter a category des (5-70 characters)</span>
+            </div>
+
+            <button type="submit"
+            class="btn btn-success" 
+            style="width:100%; background-color:#53e807; color:black">Add/Edit category</button>
+  </form>
+  </mat-card-content>
+  </mat-card>
+  </div>
+  </div>
+</div>

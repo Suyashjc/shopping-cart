@@ -1,0 +1,71 @@
+<mat-sidenav-container class="sidenav-container" >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+     
+      [mode]=" 'over' "
+      [opened]="false">
+    <mat-toolbar>Menu
+        <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        style="left:90px"
+        > 
+        <mat-icon aria-label="Side nav toggle icon" >clear</mat-icon>
+      </button>
+
+      
+      
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item class="sideList" routerLink='/home' (click)="drawer.toggle()">Home</a>
+      <a *ngIf="mainRole.includes(2)" mat-list-item class="sideList"  (click)="editCategory(drawer)">Edit/Add Catergory</a>
+      <a mat-list-item class="sideList" (click)='showCategory()'>Category
+        <mat-icon aria-label="Side nav toggle icon"> keyboard_arrow_down</mat-icon>
+      </a>
+     
+      
+      <div class="category"  *ngIf='displayCategory'>
+      <mat-nav-list *ngFor="let category of categories">
+        <a mat-list-item class="sideList" (click)='selectCategory(category.categoryId,drawer)'>{{category.category}}
+          
+        </a>        
+      </mat-nav-list>
+    </div>
+      <!-- <a mat-list-item routerLink='/products' (click)="drawer.toggle()" >Products</a> -->
+      <a *ngIf="mainRole.includes(1)" mat-list-item class="sideList" routerLink='/wishlist' (click)="drawer.toggle()">Wishlist</a>
+      <a mat-list-item  class="sideList" routerLink='/account' (click)="drawer.toggle()">Account</a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content 
+   style=" background-image:url('assets/image/flipkart.jpg');
+    background-size: cover !important;
+    height:760px;"
+    >
+    <mat-toolbar color="primary"
+     *ngIf="router.url != '/signin' && router.url != '/register' ">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="openSide(drawer)"
+       >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Menu</span>
+
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="logout()"
+        style="left:90%;position: absolute;"
+        > 
+        <mat-icon aria-label="Side nav toggle icon" >logout</mat-icon>Logout
+      </button>
+    </mat-toolbar>
+    <router-outlet ></router-outlet>
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>

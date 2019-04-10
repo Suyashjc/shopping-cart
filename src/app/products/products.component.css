@@ -1,0 +1,144 @@
+.example-card {
+  position: sticky;
+  margin: 30px;
+  width: 300px;
+  min-height: 500px;
+  float:left;
+  border-color:  black;
+  box-shadow: 0 1px 12px 2px black;
+}
+
+.null{
+  text-align: center;
+  font-size: 25px;
+  color: red
+}
+
+.heart{
+  position: absolute;
+  height: 42px;
+  top: 5%;
+  right: 9%;
+}
+.heart:hover{
+  transform: scale(1.3); 
+}
+
+.seeButton{
+  right: 8%;
+  position: absolute;
+  background-color: transparent;
+  border: 3px solid black;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block; 
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.seeButton:hover{
+  background-color:red;
+  color: white;
+  transform: scale(1.1); 
+}
+
+.delete{
+  position: absolute;
+  right: 2%;
+  top: 4px;
+  cursor: pointer;
+}
+
+.delete:hover{
+  transform: scale(1.3); 
+  cursor: pointer;
+}
+
+.getDetails{
+  width: 100%;
+  height: 39px;
+  border-radius: 11px;
+  background-color: transparent;
+  border: 3px solid black;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /* font-size: 16px; */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.getDetails:hover{
+  background-color:green;
+  color: white;
+  transform: scale(1.1); 
+}
+
+.image{
+  border:5px solid white;
+  height: 250px;
+  width: 300px;
+}
+
+.loader {
+  border: 16px solid;
+  border-radius: 50%;
+  border-top: 16px solid red;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin: auto;
+  margin-top: 5%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* .image:hover{
+  transform: scale(1.2); 
+} */
+
+.p-limit{
+  min-height: 35px;
+  max-height: 35px;
+  overflow: hidden;
+}
+
+.name-length{
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topBar{
+  position: relative;
+  margin-top: 2%;
+  background-color: antiquewhite;
+  text-align: center;
+  font-size: 25px;
+  box-shadow: 0px 6px black;
+}
+
+.null{
+  margin-top: 154px;
+  text-align: center;
+  font-size: 25px;
+  color: red
+}
+.footer{
+  width: 100%;
+  display: -webkit-inline-box;
+  text-align: -webkit-center;
+}
+.button{
+  position: absolute;
+    height: 75% !important;
+    right: 23%;
+    top: 12%;
+    font-size: initial;
+}

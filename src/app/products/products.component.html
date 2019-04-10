@@ -1,0 +1,53 @@
+<!-- <div *ngIf='error' class="loader"></div>-->
+<div  *ngIf="!error"  class="topBar" id="try" >All for {{category}}
+    <button *ngIf="mainRole.includes(2)" type="button" class="button btn btn-success" (click)="addNewProducts(id)" >Add new products</button>
+</div>
+<div *ngIf="error" class="null">Something went wrong try again later</div>
+<div *ngIf="noData" class="null">No data avaiable</div>
+<div *ngIf="!error">
+  <mat-card  class="example-card" *ngFor='let product of products'>
+    <mat-icon *ngIf="mainRole.includes(2)" class="delete"  matTooltip="Delete Product" matTooltipPosition='above'
+     (click)="deleteProduct(product.productId)">delete</mat-icon>
+    
+      <h3 class="name-length">{{product.productName||uppercase}} </h3>
+      <img mat-card-image class="image" src="{{baseURL+product.productImage+add}}" alt="image" >
+
+        <div *ngIf="mainRole.includes(1)">
+        <div *ngIf="product.inWishlist; else other ">
+          <a (click)="addToWishlist(product.productId)" 
+           matTooltip="Remove from wishlist" matTooltipPosition='above'><img class="heart"
+            src="assets/image/heart.png" alt="ds"  ></a></div>
+    
+            <ng-template #other>
+              <a (click)="addToWishlist(product.productId)"><img class="heart"
+                src="assets/image/transparentHeart.png" alt="ds"  
+                matTooltip="Add from wishlist" matTooltipPosition='above' ></a></ng-template>
+              </div>
+
+      <mat-card-content>
+          <span><b>Details:</b></span>
+        <p class="p-limit">
+          {{product.productDescription}}
+        </p>
+        <span><b>Price:</b></span>
+        <p>
+         {{product.price}} {{product.priceUnit}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions >
+     
+          <button *ngIf="mainRole.includes(1)" class="getDetails" (click)="getProductDetail(product.productId)">Get details</button><br>
+          <button *ngIf="mainRole.includes(2)" class="getDetails" (click)="editProduct(product.productId)" style="position:relative">
+            <mat-icon style="margin-left: -55px;">create</mat-icon><span style="position: absolute;
+            top: 22%;">Edit</span></button>
+
+      
+      </mat-card-actions>
+
+    </mat-card>
+    <div  *ngIf="!error" class="footer">
+      <ngb-pagination [collectionSize]="size" [(page)]="page" [maxSize]="5"
+      [rotate]="true" [ellipses]="false"  (pageChange)="onPageClick($event)"></ngb-pagination>
+    </div>
+  </div><br>
+   

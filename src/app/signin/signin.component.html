@@ -1,0 +1,61 @@
+ <div class="row">
+    <div class="col-md-4 col-md-offset-4">  
+<mat-card class="example-card" >
+ 
+  <mat-card-content class="mat-card-content">
+  
+      
+        <form (ngSubmit)="onSignin(f)" #f="ngForm">
+            <div *ngIf='error' style="text-align:center;color:red">Network issue. Please try again later</div>
+
+           <h3 style="text-align:center;color:white">Login</h3> 
+          <img class="logImg" src="assets/image/profilePic.png"  alt="pro pic">
+          <div class="form-group">
+            <label for="phoneNo" style="color:white">Phone Number</label>
+            <input type="text" 
+            id="phoneNo" name="phoneNo"
+             ngModel 
+             class="form-control" 
+             placeholder="Phone Number"
+             maxlength="10" 
+             style="background-color:antiquewhite"
+             required
+            #phoneNo="ngModel">
+             <span *ngIf="!phoneNo.valid && phoneNo.touched" 
+             style="color:red"
+             class="help-block">Please enter a Phone Number</span>
+          </div>
+      
+          <div class="form-group">
+              <label for="password" style="color:white">Password</label>
+            <input type="password" 
+            id="password" name="password"
+             ngModel 
+             class="form-control"
+              placeholder="Password"
+              style="background-color:antiquewhite"
+              required
+              #password="ngModel">
+              <span *ngIf="!password.valid && password.touched" 
+              style="color:red"
+              class="help-block">Please enter a vaild Password</span> 
+          </div>
+          
+          <button class="btn btn-primary"
+          [disabled]="!f.valid"
+           
+            type="submit">SIGN IN</button><br><br>
+      
+           
+          <div style="text-align:center"><a routerLink="/register" class="a">Click to Signup</a></div>
+      
+          <div *ngIf="errorLogin"
+          style="color:red;
+          text-align: center;
+          font-size: 17px;">Username or Password did not match</div>
+      
+        </form>
+
+  </mat-card-content> 
+</mat-card>
+</div></div>

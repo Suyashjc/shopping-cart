@@ -1,0 +1,141 @@
+.example-card {
+  position: sticky;
+  margin: 30px;
+  width: 300px;
+  min-height: 460px;
+  float:left;
+  border-color:  black;
+  box-shadow: 0 1px 12px 2px black;
+}
+
+.null{
+  margin-top: 154px;
+  text-align: center;
+  font-size: 25px;
+  color: red
+}
+
+  .topBar{
+    /* background: darkolivegreen; */
+    margin-top: 1%;
+    box-shadow: black;
+    box-shadow: 3px 3px 3px 3px;
+    background-color:antiquewhite 
+    /* background-image: -webkit-gradient(radial, center center, 0, center center, 600,
+    from(yellow), to(white), 
+    color-stop(20%, orange), color-stop(40%,green),
+     color-stop(60%, rgb(121, 195, 230)), color-stop(80%, purple)) */
+  }
+
+  .seeButton{
+    right: 4%;
+    position: absolute;
+    background-color: transparent;
+    border: 3px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .seeButton:hover{
+    background-color:red;
+    color: white;
+    transform: scale(1.1); 
+  }
+
+  .getDetails{
+    width: 100%;
+    height: 39px;
+    border-radius: 11px;
+    background-color: transparent;
+    border: 3px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* font-size: 16px; */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .getDetails:hover{
+    background-color:green;
+    color: white;
+   
+  }
+
+  .image{
+    border:5px solid white;
+    height: 200px;
+    /* width: 269px; */
+  }
+
+ 
+  /* .image:hover{
+    transform: scale(1.3); 
+  } */
+
+  .heart{
+    position: absolute;
+    height: 42px;
+    top: 5%;
+    right: 9%;
+  }
+  .heart:hover{
+    transform: scale(1.3); 
+  }
+
+  .p-limit{
+    min-height: 35px;
+    max-height: 35px;
+    overflow: hidden;
+  }
+
+  .name-length{
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .block-with-text {
+    /* hide text if it more than N lines  */
+    overflow: hidden;
+    /* for set '...' in absolute position */
+    position: relative; 
+    /* use this value to count block height */
+    line-height: 1.2em;
+    /* max-height = line-height (1.2) * lines max number (3) */
+    max-height: 3.6em; 
+    /* fix problem when last visible word doesn't adjoin right side  */
+    text-align: justify;
+    
+    /* */
+    margin-right: -1em;
+    padding-right: 1em;
+  }
+  .block-with-text:before {
+    /* points in the end */
+    content: '...';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of block */
+    right: 0;
+    bottom: 0;
+  }
+  .block-with-text:after {
+    /* points in the end */
+    content: '';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of text */
+    right: 0;
+    width: 1em;
+    /* set width and height */
+    height: 1em;
+    margin-top: 0.2em;
+    background: white;
+  }

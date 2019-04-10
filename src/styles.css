@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.row{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+/* .mat-drawer-container {
+    background-image:url('assets/image/flipkart.jpg');
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    min-height: 700px !important;
+  } */

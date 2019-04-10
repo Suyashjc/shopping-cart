@@ -1,0 +1,108 @@
+.example-card {
+  position: sticky;
+  margin: 30px;
+  width: 300px;
+  float:left;
+  border-color:  black;
+  box-shadow: 0 1px 12px 2px black;
+}
+
+.seeButton{
+  right: 8%;
+  position: absolute;
+  background-color: transparent;
+  border: 3px solid black;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block; 
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.seeButton:hover{
+  background-color:red;
+  color: white;
+  transform: scale(1.1); 
+}
+
+.getDetails{
+  background-color: transparent;
+  border: 3px solid black;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /* font-size: 16px; */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.getDetails:hover{
+  background-color:green;
+  color: white;
+  transform: scale(1.1); 
+}
+.null{
+  text-align: center;
+  margin-top: 10%;
+  font-size: 25px;
+  color: red
+}
+.image{
+  border:5px solid white;
+  height: 250px;
+  width: 300px;
+}
+
+
+.topBar{
+  /* background: darkolivegreen; */
+  margin-top: 1%;
+  box-shadow: black;
+  text-align: center;
+  box-shadow: 3px 3px 3px 3px;
+  background-color: antiquewhite
+}
+
+.empty{
+  font-size:20px;
+  text-align: center;
+  margin-top: 30px;
+  color: aliceblue
+}
+
+.loader {
+  border: 16px solid;
+  border-radius: 50%;
+  border-top: 16px solid red;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin: auto;
+  margin-top: 5%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.p-limit{
+  min-height: 35px;
+  max-height: 35px;
+  overflow: hidden;
+}
+.null{
+  margin-top: 154px;
+  text-align: center;
+  font-size: 25px;
+  color: red
+}
+.name-length{
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

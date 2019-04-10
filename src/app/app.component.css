@@ -1,0 +1,8 @@
+.try{
+    background-image:url('../assets/image/flipkart.jpg');
+    background-position: center !important;
+height: 100%;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    min-height: 700px !important;
+}

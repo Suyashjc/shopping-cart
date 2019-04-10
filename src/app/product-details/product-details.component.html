@@ -1,0 +1,55 @@
+<!-- <div *ngIf="error || product==null" class='loader'></div> 
+ <div *ngIf="error || product==null" class='null'>Please Wait</div> -->
+
+
+<div *ngIf="error" class="null">Something went wrong please try again later</div>
+
+<div *ngIf="!error" class="background-outer-container pnone" >
+  <div class="form-container-outer" *ngIf='product!=null'>
+    <div class="col-lg-12 row form-wrapper-div  mnone pnone">
+      <div class=" col-lg-5 img-container-outer  mnone">
+        
+          <img class="img-wrapper-div border" src="{{baseURL+product.productImage}}">
+
+          <div *ngIf="mainRole.includes(1)">
+          <div *ngIf="product.inWishlist; else other ">
+            <a (click)="addToWishlist(product.productId)"><img class="heart"
+              src="assets/image/heart.png" alt="ds" ></a></div>
+      
+              <ng-template #other>
+                <a (click)="addToWishlist(product.productId)"><img class="heart"
+                  src="assets/image/transparentHeart.png" alt="ds" ></a></ng-template>
+                </div>
+            
+      </div>
+      <div class="col-lg-7 content-outer-div  mnone" >
+          
+        <div class="table-outer">
+        <table style="width: 100%;height: 100%;">
+          <tr>
+            <td class='header'>Name:</td>
+            <td>{{product.productName}}</td>
+          </tr>
+          <tr>
+            <td class='header'>Description:</td>
+            <td>{{product.productDescription}}</td>
+          </tr>
+          <tr>
+            <td class='header'>Details:</td>
+            <td>{{product.productDetails}}</td>
+          </tr>
+          <tr>
+            <td class='header'>Price:</td>
+            <td>{{product.price}} {{product.priceUnit}}</td>
+          </tr>
+        </table>
+      </div>
+
+        </div>				
+      </div>  
+  </div>
+  
+</div>
+
+
+

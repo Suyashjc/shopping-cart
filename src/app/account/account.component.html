@@ -1,0 +1,198 @@
+<!-- <div *ngIf="error || info==null" class="loader"></div>
+<div *ngIf="error || info==null" class="null">Please wait</div> -->
+
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <div *ngIf="error"  class='null'>Something went wrong please try again later</div>
+<mat-card class="example-card" *ngIf="!error || info!=null">
+ 
+  <mat-card-content>
+      <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+             
+              <form *ngIf="info" [formGroup]="accountForm"  (ngSubmit)="onSubmit()" #formMain="ngForm"> 
+                  <div >
+                  <img class="logImg" *ngIf="profilePicture"  [src]="profilePicture"></div>
+                    <br>
+                  <div style="text-align:center">
+                    <a (click)="editMode()" style="cursor:pointer;color:white">edit picture</a></div>
+                  <div *ngIf="edit" class="editPicture">
+                     <span class="chooseImage"><input type="file" accept=".png, .pdf, .jpg, .jpeg" (change)="onFileSelected($event)"></span> 
+                     <span class="uploadButton"><button type="button" (click)="onUpload()">Change pic</button></span>
+                     <div  style="text-align:center">Max size 500kb</div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="firstName" style="color:white">First Name</label>
+                      <input 
+                      type="text"
+                    id="firstName"
+                    formControlName="firstName"
+                    maxlength="15"
+                    pattern="[A-Za-z]*"
+                    style="background-color:antiquewhite"
+                    class="form-control">
+                          <span style="color:red" *ngIf="accountForm.controls['firstName'].invalid && formMain.submitted "> 
+                         Please enter a valid first name (1-15 characters)</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName" style="color:white">Last Name</label>
+                        <input 
+                        type="text"
+                      id="lastName"
+                      formControlName="lastName"
+                      maxlength="20"
+                      style="background-color:antiquewhite"
+                      class="form-control">
+                      <span style="color:red" *ngIf="accountForm.controls['lastName'].invalid && formMain.submitted"> 
+                        Please enter a valid last name (1-15 characters)</span>
+                      </div>
+
+
+                      <div class="form-group">
+                          <label for="phoneNumber" style="color:white">Phone Number</label>
+                          <input 
+                          type="number"
+                        id="phoneNumber"
+                        disabled
+                        formControlName="phoneNumber"
+                        style="background-color:antiquewhite"
+                        class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" style="color:white">Email Id</label>
+                            <input 
+                            type="email"
+                          id="email"
+                          formControlName="email"
+                          maxlength="40"
+                          style="background-color:antiquewhite"
+                          class="form-control"> 
+                          <span style="color:red" *ngIf="accountForm.controls['email'].invalid && formMain.submitted"> 
+                            Please enter a valid email Id (1-40 characters)</span>                         
+                          </div>
+
+
+                          <div class="form-group">
+                              <div class="col-md-3">
+                            <label for="lastName" style="color:white">Gender</label>
+                          </div>
+                    
+                            <div class="col-md-3" style="color:white">
+                            <input type="radio"
+                             id="male" name="gender"
+                             formControlName="gender"
+                              [(ngModel)]="val"
+                             required                            
+                              [value]="1"> Male
+                          </div>
+                    
+                          <div class="col-md-3" style="color:white">
+                            <input type="radio"
+                            id="female" name="gender"
+                            formControlName="gender"
+                            [(ngModel)]="val"
+                            required                                                  
+                             [value]="2"> Female
+                          </div>
+                    
+                          <div class="col-md-3"  style="color:white">
+                            <input type="radio"
+                            id="other" name="gender"
+                            formControlName="gender"
+                            [(ngModel)]="val"
+                            required                           
+                              [value]="3"> Other  
+                            </div>
+                          </div>
+                          <hr>
+                              <div  formArrayName="address">
+                                  <div 
+                                  *ngFor="let accountControl of accountForm.get('address').controls; let i=index"
+                                  [formGroupName]="i" style="margin-top:5px" >                                 
+                                      <label for="address" style="color:white">Address</label>
+                                      <textarea 
+                                      type="text"
+                                      formControlName="address"
+                                      maxlength="120"
+                                      style="background-color:antiquewhite"
+                                      class="form-control"></textarea>
+                                      <span style="color:red" *ngIf="accountControl.controls['address'].invalid
+                                       && formMain.submitted"> 
+                                        Please enter a valid address (10-120 characters)</span>
+                                 
+                                  <div  class="row" style="margin-top:5px;margin-bottom: 10px">
+                                   <div class="col-md-4">
+                                   
+                                      <label for="firstName" style="color:white">State</label>
+                                      <input 
+                                      type="text"
+                                      formControlName="state"
+                                      maxlength="15"
+                                      style="background-color:antiquewhite"
+                                      class="form-control">
+                                      <span style="color:red" *ngIf="accountControl.controls['state'].invalid
+                                      && formMain.submitted"> 
+                                        Enter a valid state (2-15 characters)</span>
+                                   </div>
+
+                                    <div class="col-md-4">
+                                        <label for="firstName" style="color:white">City</label>
+                                      <input 
+                                      type="text"
+                                      formControlName="city"
+                                      maxlength="15"
+                                      style="background-color:antiquewhite"
+                                      class="form-control">
+                                 <span style="color:red" *ngIf="accountControl.controls['city'].invalid
+                                 && formMain.submitted"> 
+                                        Enter a valid city (2-15 characters)</span>
+                                   </div>
+                                   
+
+                                    <div class="col-md-4">
+                                        <label for="pincode" style="color:white">Pincode</label>
+                                      <input 
+                                      type="text"
+                                      formControlName="pincode"
+                                      maxlength="9"
+                                      (keypress)="isNumberKey($event)"
+                                      style="background-color:antiquewhite"
+                                      class="form-control">
+                                      <span style="color:red" *ngIf="accountControl.controls['pincode'].invalid
+                                      && formMain.submitted"> 
+                                        Enter a valid pincode (4-10 characters)</span>
+                                   </div>
+                                </div>
+                                <!-- <button type="button" 
+                            class="btn btn-danger"
+                            [disabled]="addCount==1"
+                            (click)="onDeleteAddress(i,accountControl.value)">Remove this address</button> -->
+                                </div></div>
+                            
+                                <!-- <button type="button"
+                          class="btn btn-success"
+                          (click)="onAddAddress()"
+                          [disabled]="addCount>2"
+                          style="width:100%; background-color:khaki; color:black;
+                                          margin-bottom: 10px;margin-top: 10px">Add new Address</button> -->
+                                
+                          
+
+                          <button type="submit"
+                          class="btn btn-success" 
+                          style="width:100%; background-color:#53e807; color:black">Update</button>&nbsp;
+                </form>
+
+            </div>
+            </div>
+    </mat-card-content>
+</mat-card>
+</div>
+</div>
+

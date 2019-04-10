@@ -1,0 +1,50 @@
+
+<!-- <div *ngIf="mainObj==null" class='loader'></div>
+<div *ngIf="mainObj==null" class='null'>Please Wait</div> -->
+<div *ngIf="error"  class='null'>Something went wrong please try again later</div>
+<div *ngFor="let category of mainObj">
+
+  <div class="row" *ngIf="category.products">    
+       <div class="topBar" ><span style="font-size:40px;margin-left: 5%;">{{category.category | uppercase}}</span>
+                    <button class="seeButton"
+                    style="margin-top:1%" placement="top" ngbTooltip="Tooltip on left"
+                    (click)="seeAllProducts(category.categoryId)">See all products</button>
+      </div>
+    <div *ngFor='let product of category.products; let i=index'>
+      <div *ngIf='i<3' style="margin-left:5%">
+    <mat-card class="example-card" >         
+        <h3 class="name-length">{{product.productName||uppercase}} </h3>     
+      
+     
+      <img mat-card-image class="image" src="{{baseURL+product.productImage}}"  alt="image">
+
+      <div *ngIf="mainRole.includes(1)"  >
+      <div *ngIf="product.inWishlist; else other ">
+      <a (click)="addToWishlist(product.productId)"><img class="heart"
+        src="assets/image/heart.png" alt="ds" matTooltip="Remove from wishlist" matTooltipPosition='above'></a></div>
+
+        <ng-template #other>
+          <a (click)="addToWishlist(product.productId)"><img class="heart"
+            src="assets/image/transparentHeart.png" alt="ds" matTooltip="Add to wishlist" matTooltipPosition='above' >
+          </a></ng-template>
+          </div>
+      <mat-card-content>
+        <span><b>Details:</b></span>
+        <p class="p-limit">
+         {{product.productDescription}}
+        </p>
+        <span><b>Price:</b></span>
+        <p>
+         {{product.price}} {{product.priceUnit}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button *ngIf="mainRole.includes(1)"class="getDetails" 
+         (click)="getProductDetails(product.productId)">Get details</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</div>
+</div>
+</div>

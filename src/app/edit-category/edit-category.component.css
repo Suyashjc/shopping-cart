@@ -1,0 +1,24 @@
+.example-card {
+    position: static;
+    margin-top:80px;
+    margin-bottom:80px;
+    background-color:black;
+    box-shadow: inset 0 0 26px white;
+
+  }
+  .mat-card-content{
+    margin-top: 0;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .addNewButton{
+      display: block;
+      margin: auto;
+  }
+  .null{
+    margin-top: 154px;
+    text-align: center;
+    font-size: 25px;
+    color: red
+  }

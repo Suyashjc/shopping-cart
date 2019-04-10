@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4"> 
+      <mat-card class="example-card" >
+              <mat-card-content class="mat-card-content">
+       <form *ngIf="productForm" [formGroup]="productForm"  (ngSubmit)="onSubmit()" #formMain="ngForm">
+          <h3 style="color: aliceblue;
+          text-align: -webkit-center;">Product information</h3>
+          <div class="form-group">
+           <label for="productName" style="color:white">Product Name</label>
+          <input 
+          type="text"
+          placeholder="Product name"
+          minlength="1"
+          maxlength="25"
+          id="productName"
+          formControlName="productName"           
+          style="background-color:antiquewhite"           
+          class="form-control">
+          <span style="color:red" *ngIf="productForm.controls['productName'].invalid && formMain.submitted "> 
+          Please enter a valid name (1-20 characters)</span>
+           </div>
+
+           <div class="form-group">
+          <label for="productName" style="color:white">Category</label>
+           <select id="category"
+            formControlName="category" 
+            class="form-control"
+           style="background-color: antiquewhite;
+           width: 100%;">
+                <option *ngFor="let c of categories" [ngValue]="c.categoryId">{{ c.category }}</option>
+            </select>
+            <span style="color:red" *ngIf="productForm.controls['category'].invalid && formMain.submitted "> 
+                Please select a category</span>
+          </div>
+
+           <div class="form-group">
+                  <label for="Details" style="color:white">Product Details</label>
+                 <input 
+                 type="text"
+                 id="productDetails"
+                 placeholder="Product details"
+                 minlength="1"
+                 maxlength="60"
+                 formControlName="productDetails"           
+                 style="background-color:antiquewhite"           
+                 class="form-control">
+                 <span style="color:red" *ngIf="productForm.controls['productDetails'].invalid && formMain.submitted "> 
+                 Please enter a valid product Details (1-60 characters)</span>
+           </div>
+
+           <div class="form-group">
+                  <label for="productDescription" style="color:white">Product Description</label>
+                 <textarea 
+                 type="text"
+                 id="productDescription"
+                 placeholder="Product description"
+                 minlength="5"
+                 maxlength="120"
+                 formControlName="productDescription"           
+                 style="background-color:antiquewhite"           
+                 class="form-control hi"></textarea>
+                 <span style="color:red" *ngIf="productForm.controls['productDescription'].invalid && formMain.submitted "> 
+                 Please enter a valid product description (5-120 characters)</span>
+           </div>
+
+           <div class="form-group">
+              <label for="productDescription" style="color:white">Product Image</label>
+              <div class="editPicture">
+                  <input type="file"  accept=".png, .pdf, .jpg, .jpeg"  class="inputBox" (change)="onFileSelected($event)">
+                  <div  style="text-align:center">Max size 500kb</div>
+              </div>
+          <span *ngIf="showImageError" style="color:red">Please upload an image</span>
+           </div>
+
+           <div class="form-group">
+                  <label for="price" style="color:white">Price</label>
+                 <input 
+                 type="number"
+                 id="price"
+                 pattern="(\d{1,6})+(\.\d{1,2})?"
+                 placeholder="Price"
+                 minlength="1"
+                 maxlength="7"
+                 formControlName="price"           
+                 style="background-color:antiquewhite"           
+                 class="form-control">
+                 <span style="color:red" *ngIf="productForm.controls['price'].invalid && formMain.submitted "> 
+                 Please enter a valid price (1-7 characters)</span>
+           </div>
+          
+           <div class="form-group">
+                  <label for="priceUnit" style="color:white">Price Unit</label>
+                 <input 
+                 type="text"
+                 id="priceUnit"
+                 placeholder="Price unit"
+                 minlength="1"
+                 maxlength="3"
+                 pattern="[a-zA-Z]*"
+                 (keypress)="isNotNumberKey($event)" 
+                 formControlName="priceUnit"           
+                 style="background-color:antiquewhite"           
+                 class="form-control">
+                 <span style="color:red" *ngIf="productForm.controls['priceUnit'].invalid && formMain.submitted "> 
+                 Please enter a valid price unit (1-3 characters)</span>
+           </div>
+
+           <button type="submit"
+           class="btn btn-success" 
+           style="width:100%; background-color:#53e807; color:black">Add New Product</button>
+
+           </form> 
+         </mat-card-content>
+      </mat-card>
+      </div>
+  </div>

@@ -1,0 +1,297 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<mat-card class="example-card" >
+
+  <mat-card-content>
+
+
+
+    <form (ngSubmit)="onRegister(f)" #f="ngForm">
+        <div *ngIf='error' style="text-align:center;color:red">Network issue. Please try again later</div>
+            <h3 style="text-align:center;color:white">Registration Form</h3>
+      <div class="form-group">
+        <label for="firstName" style="color:white; width: 200px">First Name</label>
+        <input type="text"
+        id="firstName" name="firstName"
+         ngModel
+         class="form-control"
+         placeholder="First Name (eg David)"
+         minlength="1"
+         maxlength="20"
+         pattern="[A-Za-z]*"
+         style="background-color:antiquewhite"
+         required
+        #firstName="ngModel">
+         <span *ngIf="!firstName.valid && f.submitted"
+         style="color:red"
+         class="help-block">Please enter a vaild First Name (1-20 characters)</span>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName" style="color:white">Last Name</label>
+        <input type="text"
+        id="lastName" name="lastName"
+         ngModel
+         class="form-control"
+         placeholder="Last Name (eg Hamilton)"
+         minlength="1"
+         maxlength="20"
+         pattern="[A-Za-z]*"
+         style="background-color:antiquewhite"
+         required
+        #lastName="ngModel">
+         <span *ngIf="!lastName.valid && f.submitted"
+         style="color:red"
+         class="help-block">Please enter a vaild Last Name (1-20 characters)</span>
+      </div>
+
+      <div class="row">
+
+      <div class="form-group" >
+          <div class="col-md-3">
+        <label for="lastName" style="color:white">Gender</label>
+      </div>
+
+        <div class="col-md-3" style="color:white">
+        <input type="radio"
+         id="male" name="gender"
+         ngModel
+         required
+         #gender="ngModel"
+          value=1> Male
+      </div>
+
+      <div class="col-md-3" style="color:white">
+        <input type="radio"
+        id="female" name="gender"
+        ngModel
+        required
+        #gender="ngModel"
+         value=2> Female
+      </div>
+
+      <div class="col-md-3" style="color:white">
+        <input type="radio"
+        id="other" name="gender"
+        ngModel
+        required
+        #gender="ngModel"
+          value=3> Other
+        </div>
+
+      </div>
+      </div>
+      <span *ngIf="!gender.valid && f.submitted"
+      style="color:red"
+      class="help-block">Please enter a vaild Gender</span>
+
+      <div class="form-group">
+          <label for="phoneNumber" style="color:white">Phone No</label>
+          <input type="text"
+          id="phoneNumber" name="phoneNumber"
+           ngModel
+           class="form-control"
+           placeholder="Phone Number (eg 8798657423)"
+           minlength="8"
+           maxlength="10"
+           pattern="[0-9]*"
+           (keypress)="isNumberKey($event)"
+           style="background-color:antiquewhite"
+           required
+          #phoneNumber="ngModel">
+           <span *ngIf="!phoneNumber.valid && f.submitted"
+           style="color:red"
+           class="help-block">Please enter a vaild Phone No (8-10 characters)</span>
+        </div>
+
+      <div class="form-group">
+        <label for="email" style="color:white">Email Id</label>
+        <input
+        id="email" name="email"
+         ngModel
+         type="email"
+         pattern='^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$'
+         maxlength="40"
+         class="form-control"
+         placeholder="Email Id (eg davidhamilton@gmail.com)"
+         style="background-color:antiquewhite"
+         required
+        #email="ngModel">
+         <span *ngIf="!email.valid && f.submitted"
+         style="color:red"
+         class="help-block">Please enter a vaild Email Id (4-40 characters)</span>
+      </div>
+
+
+      <div class="form-group">
+          <label for="password" style="color:white">Password</label>
+        <input type="password"
+        id="password" name="password"
+         ngModel
+         [(ngModel)]="inPassword"
+         class="form-control"
+          placeholder="Password (should be atleast 5 characters)"
+          style="background-color:antiquewhite"
+          required
+          minlength="5"
+          maxlength="20"
+          #password="ngModel">
+          <span *ngIf="!password.valid && f.submitted"
+          style="color:red"
+          class="help-block">Please enter a vaild Password(5-20 characters)</span>
+      </div>
+
+
+      <div class="form-group">
+          <label for="confirmPassword" style="color:white">Confirm Password</label>
+        <input type="password"
+        id="confirmPassword" name="confirmPassword"
+         ngModel
+         (change)="onConfirmPassword(confirmPassword.value)"
+         class="form-control"
+          placeholder="Confirm Password (enter the password again)"
+          style="background-color:antiquewhite;"
+          required
+          maxlength="15"
+          #confirmPassword="ngModel">
+          <span *ngIf="!confirmPassword.valid && f.submitted"
+          style="color:red"
+          class="help-block">Please re-enter Password</span>
+          <span *ngIf="(!isSame && !checkIfStaring)"
+          style="color:red"
+          class="help-block">Password doesnt match</span>
+      </div>
+
+      <div class="form-group">
+        <label for="address" style="color:white">Address</label>
+        <textarea type="text"
+        id="address" name="address"
+         ngModel
+
+         class="form-control hi"
+         placeholder="Address"
+         minlength="10"
+         maxlength="120"
+         pattern="[A-Za-z0-9./ ()-]*"
+         required
+        #address="ngModel"></textarea>
+         <span *ngIf="!address.valid && f.submitted"
+         style="color:red"
+         class="help-block">Please enter a vaild address (10-120 characters)</span>
+      </div>
+
+          <div class="row">
+            <div class="col-md-4">
+
+              <div class="form-group">
+                <label for="state" style="color:white">State</label>
+                <input type="text"
+                id="state" name="state"
+                 ngModel
+                 class="form-control"
+                 placeholder="State"
+                 minlength="2"
+                 maxlength="25"
+                 pattern="[A-Za-z]*"
+                 style="background-color:antiquewhite"
+                 required
+                #state="ngModel">
+                 <span *ngIf="!state.valid && f.submitted"
+                 style="color:red"
+                 class="help-block">Please enter a vaild state (2-25 characters)</span>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group" >
+                  <label for="city" style="color:white">City</label>
+                  <input type="text"
+                  id="city" name="city"
+                   ngModel
+                   class="form-control"
+                   placeholder="City"
+                   minlength="2"
+                   maxlength="25"
+                   pattern="[A-Za-z]*"
+                   style="background-color:antiquewhite"
+                   required
+                  #city="ngModel">
+                   <span *ngIf="!city.valid && f.submitted"
+                   style="color:red"
+                   class="help-block">Please enter a vaild city  (2-25 characters)</span>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label for="pincode" style="color:white">Pincode</label>
+                      <input type="text"
+                      id="pincode" name="pincode"
+                       ngModel
+                       class="form-control"
+                       placeholder="Pincode"
+                       minlength="4"
+                       maxlength="9"
+                       (keypress)="isNumberKey($event)"
+                       style="background-color:antiquewhite"
+                       required
+                      #pincode="ngModel">
+                       <span *ngIf="!pincode.valid && f.submitted"
+                       style="color:red"
+                       class="help-block">Please enter a vaild pincode  (4-10 characters)</span>
+                    </div>
+                  </div>
+          </div>
+          <div *ngIf="innerRole==4">
+          <div class="row" >
+
+            <div class="form-group" >
+                <div class="col-md-3">
+              <label for="Role" style="color:white">Role</label>
+            </div>
+
+              <div class="col-md-3" style="color:white">
+              <input type="radio"
+               id="user" name="role"
+               ngModel
+               required
+               #role="ngModel"
+                value=1> User
+            </div>
+
+            <div class="col-md-3" style="color:white">
+              <input type="radio"
+              id="admin" name="role"
+              ngModel
+              required
+              #role="ngModel"
+               value=2> Admin
+            </div>
+
+            <div class="col-md-3" style="color:white">
+              <input type="radio"
+              id="Both" name="role"
+              ngModel
+              required
+              #role="ngModel"
+              value=3> Both
+              </div>
+
+            </div>
+
+            </div>
+            <span *ngIf="!role.valid && f.submitted"
+      style="color:red"
+      class="help-block">Please enter a vaild Role</span>
+    </div>
+      <button class="btn btn-primary"
+      style="width:100%; background-color:#53e807; color:black"
+        type="submit">Register</button><br><br>
+
+        <div style="text-align:center"><a routerLink="/signin" class="a">Back to Signin</a></div>
+
+    </form>
+  </mat-card-content>
+</mat-card>
+</div>
+</div>
